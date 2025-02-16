@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "id": "asuras_coord_mod",
+  "version": "1.0.0",
+  "name": "Asura's Coord & Day Counter Mod",
+  "description": "Displays coordinates above the hotbar, with a toggleable dimension icon and day counter.",
+  "authors": ["Liam Mulligan"],
+  "contact": {
+    "homepage": "https://www.youtube.com/@LastTrueAsura",
+    "sources": "TBD"
+  },
+  "license": "MIT",
+  "environment": "client",
+  "entrypoints": {
+    "client": [
+      "com.asura.coordmod.CoordModClient"
+    ]
+  },
+  "depends": {
+    "fabricloader": ">=0.14.22",
+    "minecraft": ">=1.21",
+    "fabric-api": "*",
+    "cloth-config": ">=10.0.0"
+  },
+  "custom": {
+    "modmenu": {
+      "links": {
+        "github": "TBD"
+      }
+    }
+  }
+}
