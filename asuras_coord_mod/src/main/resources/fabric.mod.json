@@ -7,7 +7,7 @@
   "authors": ["Liam Mulligan"],
   "contact": {
     "homepage": "https://www.youtube.com/@LastTrueAsura",
-    "sources": "TBD"
+    "sources": "https://github.com/TrueAsura/Asura-s-Coord-Mod"
   },
   "license": "MIT",
   "environment": "client",
@@ -21,12 +21,5 @@
     "minecraft": ">=1.21",
     "fabric-api": "*",
     "cloth-config": ">=10.0.0"
-  },
-  "custom": {
-    "modmenu": {
-      "links": {
-        "github": "TBD"
-      }
-    }
   }
 }

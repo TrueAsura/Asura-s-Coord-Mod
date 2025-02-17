@@ -16,10 +16,10 @@ import net.minecraft.world.World;
 
 @Environment(EnvType.CLIENT)
 public class CoordModClient implements ClientModInitializer {
-    // Use your custom textures
-    private static final Identifier OVERWORLD_ICON = Identifier.of("asuras_coord_mod", "textures/block/grass_block_top.png");
-    private static final Identifier NETHER_ICON = Identifier.of("asuras_coord_mod", "textures/block/netherrack.png");
-    private static final Identifier END_ICON = Identifier.of("asuras_coord_mod", "textures/block/end_stone.png");
+    // Use Minecraft's default textures as fallback
+    private static final Identifier OVERWORLD_ICON = Identifier.of("minecraft", "textures/block/grass_block.png");
+    private static final Identifier NETHER_ICON = Identifier.of("minecraft", "textures/block/netherrack.png");
+    private static final Identifier END_ICON = Identifier.of("minecraft", "textures/block/end_stone.png");
 
     private static Config config;
 
@@ -44,31 +44,39 @@ public class CoordModClient implements ClientModInitializer {
         int screenHeight = drawContext.getScaledWindowHeight();
 
         if (config.showCoordinates) {
-            String coords = String.format("X: %d Y: %d Z: %d", x, y, z);
+            // Format "X, Y, Z" in gold and coordinates in white
+            String coords = String.format("§6X: §f%d §6Y: §f%d §6Z: §f%d", x, y, z);
             drawContext.drawText(client.textRenderer, Text.literal(coords), screenWidth / 2 - 30, screenHeight - 40, 0xFFFFFF, true);
         }
 
         if (config.showDimensionIcon) {
             Identifier icon = getDimensionIcon(client.world);
-            // Use RenderLayer.getText for the texture layer
-            drawContext.drawTexture((ignored) -> RenderLayer.getGuiOverlay(), icon, screenWidth / 2 + 50, screenHeight - 50, 0, 0, 16, 16, 16, 16);
+            System.out.println("Rendering icon: " + icon); // Debug print
+            // Render the icon to the left of the coordinates
+            drawContext.drawTexture((identifier) -> RenderLayer.getGui(), icon, screenWidth / 2 - 70, screenHeight - 50, 0, 0, 16, 16, 16, 16);
         }
 
         if (config.showDayCounter) {
             int days = (int) (client.world.getTimeOfDay() / 24000L);
-            String dayText = String.format("Minecraft Day: %d", days);
+            // Format "Day" in bold
+            String dayText = String.format("§lDay: %d", days);
             drawContext.drawText(client.textRenderer, Text.literal(dayText), 10, 10, 0xFFFFFF, true);
         }
     }
 
     private Identifier getDimensionIcon(World world) {
+        Identifier icon;
         if (world.getRegistryKey() == World.OVERWORLD) {
-            return OVERWORLD_ICON;
+            icon = OVERWORLD_ICON;
         } else if (world.getRegistryKey() == World.NETHER) {
-            return NETHER_ICON;
+            icon = NETHER_ICON;
+        } else if (world.getRegistryKey() == World.END) {
+            icon = END_ICON;
         } else {
-            return END_ICON;
+            icon = OVERWORLD_ICON; // Fallback to overworld icon for unknown dimensions
         }
+        System.out.println("Current Dimension: " + world.getRegistryKey().getValue() + ", Icon: " + icon);
+        return icon;
     }
 
     public static Screen createConfigScreen(Screen parent) {
