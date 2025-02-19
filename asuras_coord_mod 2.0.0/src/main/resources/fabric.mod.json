@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "id": "asuras_coord_mod",
+  "version": "${version}",
+  "name": "Asura's Coord Mod",
+  "description": "Displays coordinates and day counter.",
+  "authors": ["Asura"],
+  "contact": {
+    "homepage": "https://example.com",
+    "sources": "https://github.com/example/coordmod"
+  },
+  "license": "MIT",
+  "icon": "assets/asuras_coord_mod/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "client": [
+      "com.asura.coordmod.CoordModClient"
+    ],
+    "modmenu": [
+      "com.asura.coordmod.ModMenuIntegration"
+    ]
+  },
+  "depends": {
+    "fabric-api": "*",
+    "modmenu": "*",
+    "cloth-config": "*"
+  }
+}
