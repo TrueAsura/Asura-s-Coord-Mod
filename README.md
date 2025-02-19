@@ -1,4 +1,4 @@
-A day counter and coordinates above hotbar.
+A day counter and coordinates above hotbar. Can toggle both from the config menu.
 
 
 ![Minecraft_2025 02 17-15 46](https://github.com/user-attachments/assets/2352388b-db19-4e49-9c6c-9b4a38955642)
